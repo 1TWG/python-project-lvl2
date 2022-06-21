@@ -30,7 +30,6 @@ jobs:
       - name: linter-check
         run: make test
   coverage:
-    needs: [ test-job ]
     runs-on: ubuntu-latest
     strategy:
       matrix:
