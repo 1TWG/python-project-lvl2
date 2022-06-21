@@ -5,7 +5,9 @@ import json
 
 
 def parsing_cli():
-    parser = argparse.ArgumentParser(description='Compares two configuration files and shows a difference.')
+    parser = argparse.ArgumentParser(
+        description='Compares two configuration files and shows a difference.'
+    )
     parser.add_argument('-f', '--format', help='set format of output')
     parser.add_argument('first_file')
     parser.add_argument('second_file')
@@ -38,7 +40,9 @@ def find_diff(file1, file2):
         res.append(f'+ {i}: {templates_second[i]}')
     # Собираем вывод
     res.sort(key=lambda x: x.split()[0])
-    res.sort(key=lambda x: x.split()[1] if '+ ' in x or '- ' in x else x.split()[0])
+    res.sort(
+        key=lambda x: x.split()[1] if '+ ' in x or '- ' in x else x.split()[0]
+    )
     res = '{\n  ' + '\n  '.join(res) + '\n}'
     res = res.replace('True', 'true').replace('False', 'false')
     return res

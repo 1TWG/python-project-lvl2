@@ -10,9 +10,11 @@ def main():
     diff = find_diff(args.first_file, args.second_file)
     print(diff)
 
+
 def generate_diff(file1, file2):
     diff = find_diff(file1, file2)
     print(diff)
+
 
 if __name__ == '__main__':
     main()
