@@ -4,7 +4,7 @@
 
 ### Linter test:
 
-[![Actions Status](https://github.com/1TWG/python-project-lvl2/workflows/linter-check/badge.svg)](https://github.com/1TWG/python-project-lvl2/actions)
+[![Actions Status](https://github.com/1TWG/python-project-lvl2/workflows/linter-test-check/badge.svg)](https://github.com/1TWG/python-project-lvl2/actions)
 
 ### Maintainability:
 
