@@ -14,7 +14,9 @@ jobs:
           pip install poetry
           pip install flake8
       - name: linter-check
-        run: make lint
+        run: |
+          make test
+          make lint
   
   coverage:
     runs-on: ubuntu-latest
