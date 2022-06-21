@@ -17,7 +17,7 @@ def parsing_cli():
 
 
 # Находим различия между линейными json
-def find_diff(file1, file2):
+def generate_diff(file1, file2):
     with open(file1) as f1, open(file2) as f2:
         templates_first = json.load(f1)
         templates_second = json.load(f2)
