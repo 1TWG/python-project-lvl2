@@ -15,20 +15,7 @@ jobs:
           pip install flake8
       - name: linter-check
         run: make lint
-  test-check:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Set up Python
-        uses: actions/setup-python@v3
-        with:
-          python-version: '3.x'
-      - name: Install dependencies
-        run: |
-          pip install poetry
-          pip install flake8
-      - name: linter-check
-        run: make test
+  
   coverage:
     runs-on: ubuntu-latest
     strategy:
