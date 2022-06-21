@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
 
-from gendiff.core import parsing_cli
-from gendiff.core import generate_diff
+from gendiff import parsing_cli
+from gendiff import generate_diff
 
 
 def main():
