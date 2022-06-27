@@ -4,24 +4,37 @@
 import json
 import copy
 
+cl_way = []
 
-def plaintify(d1, d2, way='', count = 0):
+
+def make_cl_way(d1, d2):
+    global cl_way
+    cl_way = sorted(list(set(list(d1.keys()) + list(d2.keys()))))
+
+
+def plaintify(d1, d2, way='', count=0):
     res_st = ''
     dict_keys = sorted(list(set(list(d1.keys()) + list(d2.keys()))))
     for i in dict_keys:
         if i in d1 and i not in d2:
             res_st += f"Property '{way + i}' was removed\n"
-        elif i in d1 and i in d2 and type(d1[i]) is dict and type(d2[i]) is dict:
+        elif i in d1 and i in d2 \
+                and type(d1[i]) is dict \
+                and type(d2[i]) is dict:
             way += str(i) + '.'
             res_st += plaintify(d1[i], d2[i], way, count)
-            way = ''
+            way_t = way.split('.')[:-2]
+            way = '.'.join(way_t) + '.'
+
         elif i not in d1 and i in d2:
             if type(d2[i]) is dict:
                 val = '[complex value]'
             else:
                 val = d2[i]
             res_st += f"Property '{way + i}' was added with value: '{val}'\n"
-        elif i in d1 and i in d2 and d1[i] != d2[i] and (type(d1[i]) is not dict or type(d2[i]) is not dict):
+        elif i in d1 and i in d2 \
+                and d1[i] != d2[i] \
+                and (type(d1[i]) is not dict or type(d2[i]) is not dict):
             if type(d1[i]) is dict:
                 val1 = '[complex value]'
             else:
@@ -30,12 +43,16 @@ def plaintify(d1, d2, way='', count = 0):
                 val2 = '[complex value]'
             else:
                 val2 = d2[i]
-            res_st += f"Property '{way + i}' was updated. From '{str(val1)}' to '{val2}'\n"
+            res_st += f"Property '{way + i}' was updated. " \
+                      f"From '{str(val1)}' to '{val2}'\n"
+        if i in cl_way:
+            way = ''
     res_st = res_st.replace("'False'", 'false') \
         .replace("'True'", 'true') \
         .replace("'None'", 'null') \
-        .replace("'[",'[')\
-        .replace("]'",']')
+        .replace("'[", '[') \
+        .replace("]'", ']')
+
     return res_st
 
 
@@ -97,10 +114,11 @@ def generate_diff(file1, file2, format=None):
     with open(file1) as f1, open(file2) as f2:
         templates_first = json.load(f1)
         templates_second = json.load(f2)
-    if format == None:
+    if not format:
         dict_res = make_diff_dict(templates_first, templates_second)
         res = stringify(dict_res, ' ', 2)
     elif format == 'plain':
+        make_cl_way(templates_first, templates_second)
         res = plaintify(templates_first, templates_second)[:-1]
 
     return res
