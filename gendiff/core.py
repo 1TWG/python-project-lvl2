@@ -17,5 +17,8 @@ def generate_diff(file1, file2, format=None):
     elif format == 'plain':
         make_cl_way(templates_first, templates_second)
         res = plaintify(templates_first, templates_second)[:-1]
+    elif format == 'json':
+        dict_res = make_diff_dict(templates_first, templates_second)
+        res = json.dumps(dict_res, indent=4)
 
     return res
