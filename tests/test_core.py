@@ -1,5 +1,3 @@
-# -*- coding:utf-8 -*-
-
 """Users representation tests."""
 
 from gendiff import generate_diff
