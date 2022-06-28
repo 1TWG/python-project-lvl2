@@ -20,6 +20,7 @@ def generate_diff(file1, file2, format=None):
             templates_second = yaml.full_load(f2)
         else:
             return 'File extension is not supported'
+    res = ''
     if not format:
         dict_res = make_diff_dict(templates_first, templates_second)
         res = stringify(dict_res, ' ', 2)
