@@ -1,3 +1,5 @@
+#!/usr/bin/python2
+
 import json
 import os.path as path
 import yaml
