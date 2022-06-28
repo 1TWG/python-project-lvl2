@@ -10,6 +10,8 @@ from gendiff.stringify import make_diff_dict, stringify
 
 # Чтение файлов
 def generate_diff(file1, file2, format='stylish'):
+    if not format:
+        format = 'stylish'
     with open(path.abspath(file1)) as f1, open(path.abspath(file2)) as f2:
         ext1, ext2 = path.splitext(file1)[1], path.splitext(file2)[1]
         if ext1 == '.json' and ext2 == '.json':
@@ -31,5 +33,4 @@ def generate_diff(file1, file2, format='stylish'):
         dict_res = make_diff_dict(templates_first, templates_second)
         res = json.dumps(dict_res, indent=4)
 
-    print(res)
     return res

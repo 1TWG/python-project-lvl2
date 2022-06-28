@@ -32,7 +32,8 @@ def plaintify(d1, d2, way='', count=0):
             if str(val).isdigit():
                 res_st += f"Property '{way + i}' was added with value: {val}\n"
             else:
-                res_st += f"Property '{way + i}' was added with value: '{val}'\n"
+                res_st += f"Property '{way + i}' " \
+                          f"was added with value: '{val}'\n"
         if i in d1 and i in d2 \
                 and d1[i] != d2[i] \
                 and (type(d1[i]) is not dict or type(d2[i]) is not dict):
