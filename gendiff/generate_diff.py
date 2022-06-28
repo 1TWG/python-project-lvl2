@@ -32,4 +32,4 @@ def generate_diff(file1, file2, format=None):
         res = json.dumps(dict_res, indent=4)
 
     print(res)
-    return res
+    #return res
