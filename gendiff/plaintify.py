@@ -45,11 +45,19 @@ def plaintify(d1, d2, way='', count=0):
             else:
                 val2 = d2[i]
             if str(val2).isdigit():
-                res_st += f"Property '{way + i}' was updated. " \
-                          f"From '{str(val1)}' to {val2}\n"
+                if str(val1).isdigit():
+                    res_st += f"Property '{way + i}' was updated. " \
+                              f"From {str(val1)} to {val2}\n"
+                else:
+                    res_st += f"Property '{way + i}' was updated. " \
+                              f"From '{str(val1)}' to {val2}\n"
             else:
-                res_st += f"Property '{way + i}' was updated. " \
-                          f"From '{str(val1)}' to '{val2}'\n"
+                if str(val1).isdigit():
+                    res_st += f"Property '{way + i}' was updated. " \
+                              f"From {str(val1)} to '{val2}'\n"
+                else:
+                    res_st += f"Property '{way + i}' was updated. " \
+                              f"From '{str(val1)}' to '{val2}'\n"
         if i in cl_way:
             way = ''
     res_st = res_st.replace("'False'", 'false') \
