@@ -33,5 +33,6 @@ def generate_diff(file1, file2, format=None, test_check=0):
 
     if test_check == 0:
         print(res)
+        return None
     else:
         return res
