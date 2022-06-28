@@ -31,4 +31,5 @@ def generate_diff(file1, file2, format=None):
         dict_res = make_diff_dict(templates_first, templates_second)
         res = json.dumps(dict_res, indent=4)
 
+    print(res)
     return res
