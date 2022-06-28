@@ -56,7 +56,7 @@ def stringify(d, replace, spacecount):
                               + ': ' + str(temp_dict_s[i]) + '\n'
             else:
                 res_string += str(replace * spacecount) + str(i) \
-                              + '/' + '\n'
+                              + ': ' + '\n'
     res_string += '}'
     res_string = res_string.replace('True', 'true') \
         .replace('None', 'null') \
