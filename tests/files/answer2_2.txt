@@ -21,8 +21,10 @@
         }
     }
     group1: {
-      - baz: 0
-      + baz:
+      - baz1: 0
+      + baz1:
+      - baz2:
+      + baz2: null
         foo: bar
       - nest: {
             key: value
