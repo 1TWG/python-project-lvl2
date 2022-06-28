@@ -48,8 +48,12 @@ def stringify(d, replace, spacecount):
                                       replace, spacecount + 4)[0:-1] \
                           + str(replace * spacecount) + '  }\n'
         else:
-            res_string += str(replace * spacecount) + str(i) \
-                          + ': ' + str(temp_dict_s[i]) + '\n'
+            if len(str(temp_dict_s[i])) > 1:
+                res_string += str(replace * spacecount) + str(i) \
+                              + ': ' + str(temp_dict_s[i]) + '\n'
+            else:
+                res_string += str(replace * spacecount) + str(i) \
+                              + ':' + str(temp_dict_s[i]) + '\n'
     res_string += '}'
     res_string = res_string.replace('True', 'true') \
         .replace('None', 'null') \
