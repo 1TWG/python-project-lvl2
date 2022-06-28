@@ -26,6 +26,13 @@ def test_find_diff_tree():  # Тест diff для рекурсивных фай
     assert generate_diff('tests/files/filepath1.json', 'tests/files/filepath2.json') == b
 
 
+d = open('./tests/files/answer2_2.txt').read().rstrip()
+
+
+def test_find_diff_treeq():  # Тест diff для рекурсивных файлов
+    assert generate_diff('tests/files/filepath1_2.json', 'tests/files/filepath2_2.json') == d
+
+
 c = open('./tests/files/answer3.txt').read().rstrip()
 
 

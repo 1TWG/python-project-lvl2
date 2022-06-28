@@ -4,7 +4,9 @@
         setting1: Value 1
       - setting2: 200
       - setting3: true
-      + setting3: null
+      + setting3: {
+            key: value
+        }
       + setting4: blah blah
       + setting5: {
             key5: value5
@@ -19,8 +21,8 @@
         }
     }
     group1: {
-      - baz: bas
-      + baz: bars
+      - baz:
+      + baz: 0
         foo: bar
       - nest: {
             key: value

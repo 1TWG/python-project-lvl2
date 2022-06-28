@@ -12,9 +12,12 @@ def make_diff_dict(d1, d2):
         if i in d1 and i in d2:
             if type(d1[i]) is dict and type(d2[i]) is dict:
                 d_diff['  ' + i] = make_diff_dict(d1[i], d2[i])
-            elif type(d1[i]) is dict and type(d2[i]) is str:
+            elif type(d1[i]) is dict and type(d2[i]) is not dict:
                 d_diff['- ' + i] = make_diff_dict(d1[i], d1[i])
                 d_diff['+ ' + i] = d2[i]
+            elif type(d1[i]) is not dict and type(d2[i]) is dict:
+                d_diff['- ' + i] = d1[i]
+                d_diff['+ ' + i] = make_diff_dict(d2[i], d2[i])
             else:
                 if d1[i] == d2[i]:
                     d_diff['  ' + i] = d1[i]
@@ -48,7 +51,7 @@ def stringify(d, replace, spacecount):
                                       replace, spacecount + 4)[0:-1] \
                           + str(replace * spacecount) + '  }\n'
         else:
-            if len(str(temp_dict_s[i])) > 1:
+            if len(str(temp_dict_s[i])) > 0:
                 res_string += str(replace * spacecount) + str(i) \
                               + ': ' + str(temp_dict_s[i]) + '\n'
             else:
