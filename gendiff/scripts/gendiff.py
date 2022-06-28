@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
 
-from gendiff import parsing_cli
+from gendiff.parsing_cli import parsing_cli
 from gendiff import generate_diff
 
 
