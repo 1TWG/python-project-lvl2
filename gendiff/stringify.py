@@ -10,12 +10,15 @@ def remove_add_val(d1, i, d_diff, action):
 
 
 def diff_value(d1, d2, i, d_diff):
-    if type(d1[i]) is dict and type(d2[i]) is dict:
+    is_both_dict = type(d1[i]) is dict and type(d2[i]) is dict
+    is_first_dict = type(d1[i]) is dict and type(d2[i]) is not dict
+    is_second_dict = type(d1[i]) is not dict and type(d2[i]) is dict
+    if is_both_dict:
         d_diff['  ' + i] = make_diff_dict(d1[i], d2[i])
-    elif type(d1[i]) is dict and type(d2[i]) is not dict:
+    elif is_first_dict:
         d_diff['- ' + i] = make_diff_dict(d1[i], d1[i])
         d_diff['+ ' + i] = d2[i]
-    elif type(d1[i]) is not dict and type(d2[i]) is dict:
+    elif is_second_dict:
         d_diff['- ' + i] = d1[i]
         d_diff['+ ' + i] = make_diff_dict(d2[i], d2[i])
     else:
@@ -35,9 +38,9 @@ def make_diff_dict(d1, d2):
         in_second = i in d2
         if in_first and in_second:
             diff_value(d1, d2, i, d_diff)
-        if in_first and not in_second:
+        elif in_first and not in_second:
             remove_add_val(d1, i, d_diff, '- ')
-        if not in_first and in_second:
+        else:
             remove_add_val(d2, i, d_diff, '+ ')
     return d_diff
 
