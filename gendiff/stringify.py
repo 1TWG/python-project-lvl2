@@ -9,24 +9,28 @@ def remove_add_val(d1, i, d_diff, action):
         d_diff[action + i] = d1[i]
 
 
+def add_to_dict(d_diff, i, t, st):
+    d_diff[st + i] = t
+
+
 def diff_value(d1, d2, i, d_diff):
     is_both_dict = type(d1[i]) is dict and type(d2[i]) is dict
     is_first_dict = type(d1[i]) is dict and type(d2[i]) is not dict
     is_second_dict = type(d1[i]) is not dict and type(d2[i]) is dict
     if is_both_dict:
-        d_diff['  ' + i] = make_diff_dict(d1[i], d2[i])
+        add_to_dict(d_diff, i, make_diff_dict(d1[i], d2[i]), '  ')
     elif is_first_dict:
-        d_diff['- ' + i] = make_diff_dict(d1[i], d1[i])
-        d_diff['+ ' + i] = d2[i]
+        add_to_dict(d_diff, i, make_diff_dict(d1[i], d1[i]), '- ')
+        add_to_dict(d_diff, i, d2[i], '+ ')
     elif is_second_dict:
-        d_diff['- ' + i] = d1[i]
-        d_diff['+ ' + i] = make_diff_dict(d2[i], d2[i])
+        add_to_dict(d_diff, i, d1[i], '- ')
+        add_to_dict(d_diff, i, make_diff_dict(d2[i], d2[i]), '+ ')
     else:
         if d1[i] == d2[i]:
-            d_diff['  ' + i] = d1[i]
+            add_to_dict(d_diff, i, d1[i], '  ')
         else:
-            d_diff['- ' + i] = d1[i]
-            d_diff['+ ' + i] = d2[i]
+            add_to_dict(d_diff, i, d1[i], '- ')
+            add_to_dict(d_diff, i, d2[i], '+ ')
 
 
 # Создание diff словаря

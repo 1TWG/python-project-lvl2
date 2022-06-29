@@ -23,11 +23,11 @@ def change_value(d1, d2, i, way):
     for j in (d1, d2):
         if type(j[i]) is dict:
             values.append('[complex value]')
+        elif type(j[i]) is str:
+            values.append(f"'{j[i]}'")
         else:
-            if type(j[i]) is str:
-                values.append(f"'{j[i]}'")
-            else:
-                values.append(j[i])
+            values.append(j[i])
+
     return f"Property '{way + i}' was updated. " \
            f"From {values[0]} to {values[1]}\n"
 
