@@ -32,6 +32,17 @@ def change_value(d1, d2, i, way):
            f"From {values[0]} to {values[1]}\n"
 
 
+def plantify_for_one(i, d1, d2, way):
+    is_in_first = i in d1 and i not in d2
+    is_in_second = i not in d1 and i in d2
+    if is_in_first:
+        return f"Property '{way + i}' was removed\n"
+    elif is_in_second:
+        return add_value(d2, i, way)
+    else:
+        return ''
+
+
 # Рендеринг итоговой строки в текстовом представлении
 def plaintify(d1, d2, way='', count=0):
     res_st = ''
@@ -48,12 +59,7 @@ def plaintify(d1, d2, way='', count=0):
                 way = '.'.join(way_t) + '.'
             if is_one_dict:
                 res_st += change_value(d1, d2, i, way)
-        is_in_first = i in d1 and i not in d2
-        is_in_second = i not in d1 and i in d2
-        if is_in_first:
-            res_st += f"Property '{way + i}' was removed\n"
-        if is_in_second:
-            res_st += add_value(d2, i, way)
+        res_st += plantify_for_one(i, d1, d2, way)
         if i in cl_way:
             way = ''
     res_st = res_st.replace("'False'", 'false') \

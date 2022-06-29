@@ -13,19 +13,24 @@ def add_to_dict(d_diff, i, t, st):
     d_diff[st + i] = t
 
 
-def diff_value(d1, d2, i, d_diff):
-    is_both_dict = type(d1[i]) is dict and type(d2[i]) is dict
+def diff_value_in_one(d1, d2, d_diff, i):
     is_first_dict = type(d1[i]) is dict and type(d2[i]) is not dict
     is_second_dict = type(d1[i]) is not dict and type(d2[i]) is dict
-    if is_both_dict:
-        add_to_dict(d_diff, i, make_diff_dict(d1[i], d2[i]), '  ')
-    elif is_first_dict:
+    if is_first_dict:
         add_to_dict(d_diff, i, make_diff_dict(d1[i], d1[i]), '- ')
         add_to_dict(d_diff, i, d2[i], '+ ')
     elif is_second_dict:
         add_to_dict(d_diff, i, d1[i], '- ')
         add_to_dict(d_diff, i, make_diff_dict(d2[i], d2[i]), '+ ')
-    else:
+
+
+def diff_value(d1, d2, i, d_diff):
+    diff_value_in_one(d1, d2, d_diff, i)
+    is_both_dict = type(d1[i]) is dict and type(d2[i]) is dict
+    is_both_not_dict = type(d1[i]) is not dict and type(d2[i]) is not dict
+    if is_both_dict:
+        add_to_dict(d_diff, i, make_diff_dict(d1[i], d2[i]), '  ')
+    elif is_both_not_dict:
         if d1[i] == d2[i]:
             add_to_dict(d_diff, i, d1[i], '  ')
         else:
