@@ -63,10 +63,11 @@ def plaintify(d1, d2, way='', count=0):
         if i in cl_way:
             way = ''
     res_st = res_st.replace("'False'", 'false') \
-        .replace("True", 'true') \
+        .replace("'True'", 'true') \
         .replace("None", 'null') \
         .replace("'[", '[') \
         .replace("]'", ']')\
-        .replace("False", 'false')
+        .replace("False", 'false')\
+        .replace("True", 'true')
 
     return res_st
