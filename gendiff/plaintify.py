@@ -66,6 +66,7 @@ def plaintify(d1, d2, way='', count=0):
         .replace("True", 'true') \
         .replace("None", 'null') \
         .replace("'[", '[') \
-        .replace("]'", ']')
+        .replace("]'", ']')\
+        .replace("False", 'false')
 
     return res_st
